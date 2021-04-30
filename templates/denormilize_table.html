@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Some</title>
+</head>
+<body>
+
+<div style="text-align: center; justify-content: center; position: relative">
+    <h3>There is denormilized Material records table saved to PostgresQL in Google CLoud SQL</h3>
+
+    <a href=" http://127.0.0.1:8000/build_graphs/"><button>Preview graphs</button></a>
+<p></p>
+    <div style="justify-content: center; position: absolute; width: 100%">
+                <table  style="padding: 1px; border-collapse: collapse;width: 90%;   top: 10%; left: 10%">
+                    <thead>
+                    <tr style="padding: 1px">
+                        <th style="padding: 1px; border: 1px solid #bfbfbf;">
+                            <div class="text">uuid</div>
+                            <div class="clear"></div>
+                        </th>
+                            <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                            <div class="text">notes</div>
+                            <div class="clear"></div>
+                        </th>
+                        <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                            <div class="text">created</div>
+                            <div class="clear"></div>
+                        </th>
+                        <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                            <div class="text">modified</div>
+                            <div class="clear"></div>
+                        </th>
+                        <th style="padding: 1px; border: 1px solid #bfbfbf;">
+                            <div class="text">material_type</div>
+                            <div class="clear"></div>
+                        </th>
+                            <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                            <div class="text">short_name</div>
+                            <div class="clear"></div>
+                        </th>
+                        <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                            <div class="text">kind</div>
+                            <div class="clear"></div>
+                        </th>
+                        <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                            <div class="text">amount</div>
+                            <div class="clear"></div>
+                        </th>
+                        <th style="padding: 1px; border: 1px solid #bfbfbf;">
+                            <div class="text">license</div>
+                            <div class="clear"></div>
+                        </th>
+                            <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                            <div class="text">cost</div>
+                            <div class="clear"></div>
+                        </th>
+                        <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                            <div class="text">cultivation_tax</div>
+                            <div class="clear"></div>
+                        </th>
+                        <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                            <div class="text">amount_history</div>
+                            <div class="clear"></div>
+                        </th>
+                        <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                            <div class="text">slug</div>
+                            <div class="clear"></div>
+                        </th>
+                        <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                            <div class="text">sequence</div>
+                            <div class="clear"></div>
+                        </th>
+                        <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                            <div class="text">creation_run</div>
+                            <div class="clear"></div>
+                        </th>
+                        <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                            <div class="text">strain</div>
+                            <div class="clear"></div>
+                        </th>
+                        <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                            <div class="text">batch_number</div>
+                            <div class="clear"></div>
+                        </th>
+                        <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                            <div class="text">custom_fields</div>
+                            <div class="clear"></div>
+                        </th>
+
+                    </tr>
+                    </thead>
+                        <tbody>
+
+                            {% for row in page_obj %}
+                                <tr style="padding: 1px; vertical-align: center;">
+                                    <th class="field-get_full_name" style="padding: 1px; vertical-align: center; white-space: nowrap; font-size: 12px; border: 1px solid #bfbfbf;">
+                                        {{ row.uuid }}
+                                    </th>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.notes|default_if_none:" " }}
+                                    </td>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.created|date:"d.m.Y H:i" }}
+                                    </td>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.modified|date:"d.m.Y H:i"}}
+                                    </td>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.material_type|default_if_none:" " }}
+                                    </td>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.short_name|default_if_none:" " }}
+                                    </td>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.kind|default_if_none:" " }}
+                                    </td>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.amount|default_if_none:" " }}
+                                    </td>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.license|default_if_none:" " }}
+                                    </td>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.cost|default_if_none:" " }}
+                                    </td>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.cultivation_tax|default_if_none:" " }}
+                                    </td>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.amount_history|default_if_none:" " }}
+                                    </td>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.slug|default_if_none:" " }}
+                                    </td>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.sequence|default_if_none:" " }}
+                                    </td>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.creation_run|default_if_none:" " }}
+                                    </td>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.strain|default_if_none:" " }}
+                                    </td>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.batch_number|default_if_none:" " }}
+                                    </td>
+                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                                        {{ row.custom_fields|default_if_none:" " }}
+                                    </td>
+                                </tr>
+                        {% endfor %}
+                        </tbody>
+                </table>
+
+    </div>
+</div>
+</body>
+</html>
