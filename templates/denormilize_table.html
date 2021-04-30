@@ -2,20 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Some</title>
+    <title>Denormalized</title>
+    <style>
+        .button {
+            cursor: pointer;
+            padding: 15px 22px;
+            border: 2px solid #e7e7e7;
+            background-color: #e7e7e7;
+            border-radius: 10px;
+            transition-duration: 0.4s;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            text-decoration:none;
+
+        }
+
+        .button:hover {
+            opacity: 1;
+            background-color: #a39385;
+            color: azure
+        }
+    </style>
 </head>
 <body>
 
 <div style="text-align: center; justify-content: center; position: relative">
     <h3>There is denormilized Material records table saved to PostgresQL in Google CLoud SQL</h3>
-
-    <a href="{% url 'api:build_graphs' %}">
-        <button style="cursor: pointer; padding: 15px 22px; border: 2px solid #e7e7e7;
-background-color: #e7e7e7; border-radius: 10px; transition-duration: 0.4s;">Preview graphs
-        </button>
-    </a>
     <p></p>
-    <div style="justify-content: center; position: absolute; width: 100%; margin-left: 40px">
+
+    <a class="button" href="{% url 'api:build_graphs' %}">Preview graphs</a>
+    <p></p>
+    <div style="justify-content: center; position: absolute; width: 100%; margin-left: 40px; margin-top: 30px">
         <table style="padding: 1px; border-collapse: collapse;width: 90%;   top: 10%; left: 10%">
             <thead>
             <tr style="padding: 1px">

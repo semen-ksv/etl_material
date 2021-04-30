@@ -135,23 +135,31 @@
 
     </script>
     <style>
-        button :hover {
-            background-color: #978f87;
+        .button {
+            cursor: pointer;
+            padding: 15px 22px;
+            border: 2px solid #e7e7e7;
+            background-color: #e7e7e7;
+            border-radius: 10px;
+            transition-duration: 0.4s;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            text-decoration:none;
+        }
 
+        .button:hover {
+            opacity: 1;
+            background-color: #a39385;
+            color: azure
         }
     </style>
 
 </head>
 <body>
 <div style="text-align: center; justify-content: center; margin-top: 50px;">
-    <h1>Graphs</h1>
-    <a href="{% url 'api:index_view' %}">
-        <button style="cursor: pointer; padding: 15px 22px; border: 2px solid #e7e7e7;
-background-color: #e7e7e7; border-radius: 10px; transition-duration: 0.4s;">
-            Get back
-        </button>
-    </a>
+    <h1 style="margin-bottom: 30px">Graphs</h1>
 
+    <a class="button" href="{% url 'api:index_view' %}">Go back</a>
 </div>
 
 
@@ -160,7 +168,8 @@ background-color: #e7e7e7; border-radius: 10px; transition-duration: 0.4s;">
         <canvas id="typeChart" width="800" height="400"></canvas>
     </div>
     <div style="width: 40%; height: 40%">
-        <h3 style="margin-top: 200px; margin-left: 30px;">Data groped by material type id and counted amount and cost</h3>
+        <h3 style="margin-top: 200px; margin-left: 30px;">Data groped by material type id and counted amount and
+            cost</h3>
         <table style=" margin-left: 30px; border-collapse: collapse;width: 90%;   top: 10%; left: 10%">
             <thead>
 
@@ -211,12 +220,13 @@ background-color: #e7e7e7; border-radius: 10px; transition-duration: 0.4s;">
         </table>
     </div>
 </div>
-<div style="display: flex; margin-top: 50px ">
+<div style="display: flex; margin-top: 50px; padding-bottom: 50px">
     <div style="width: 60%; height: 40%">
         <canvas id="uidChart" width="800" height="400"></canvas>
     </div>
     <div style="width: 40%; height: 40%">
-            <h3 style="margin-top: 200px; margin-left: 30px;">Data groped by unit of measure and counted amount and cost</h3>
+        <h3 style="margin-top: 200px; margin-left: 30px;">Data groped by unit of measure and counted amount and
+            cost</h3>
 
         <table style="margin-left: 30px; border-collapse: collapse;width: 90%;   top: 10%; left: 10%">
             <thead>
