@@ -1,9 +1,11 @@
 import json
 import os
 
-from test_metabase.settings import GOOGLE_SERVICE_FILE, BUCKET_NAME, BASE_DIR
 from google.cloud import storage
 from google.oauth2 import service_account
+
+from test_metabase.settings import GOOGLE_SERVICE_FILE, BUCKET_NAME, BASE_DIR
+
 
 with open(os.path.join(BASE_DIR, GOOGLE_SERVICE_FILE)) as f:
     gcp_json_credentials_dict = json.load(f)
@@ -12,7 +14,7 @@ storage_client = storage.Client(project=gcp_json_credentials_dict['project_id'],
 
 
 def download_google_bucket_blob(file_name: str) -> str:
-    """Downloads a blob from the bucket."""
+    """Downloads a blob objext from the bucket."""
     bucket_name = BUCKET_NAME
     bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(file_name)

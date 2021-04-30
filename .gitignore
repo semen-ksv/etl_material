@@ -4,7 +4,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+google_key.json
 # C extensions
 *.so
 
@@ -162,3 +162,4 @@ pyvenv.cfg
 pip-selfcheck.json
 
 /api/files/
+!/google_key.json

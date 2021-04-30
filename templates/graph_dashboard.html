@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<!-- Required meta tags -->
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -34,22 +34,22 @@
                         backgroundColor: 'rgb(234,169,105)',
                         borderWidth: 1
                     },
-                    {
-                        label: '# Cost',
-                        data: [{% for _, i, cost in measure_init %} {{ cost }}, {% endfor %}],
-                        {#data: [12, 19, 3, 5, 2, 3],#}
-                        backgroundColor: 'rgb(137,142,217)',
-                        borderWidth: 1
-                    },
+                        {
+                            label: '# Cost',
+                            data: [{% for _, i, cost in measure_init %} {{ cost }}, {% endfor %}],
+                            {#data: [12, 19, 3, 5, 2, 3],#}
+                            backgroundColor: 'rgb(137,142,217)',
+                            borderWidth: 1
+                        },
                     ]
                 },
                 options: {
                     title: {
-                                display: true,
-                                text: 'Cost and Amount for material type',
-                                fontSize: '20'
-                            },
-                     legend:{
+                        display: true,
+                        text: 'Cost and Amount for material type',
+                        fontSize: '20'
+                    },
+                    legend: {
                         display: true
                     },
 
@@ -64,19 +64,19 @@
                     },
 
                     plugins: {
-                          datalabels: {
+                        datalabels: {
                             align: 'center',
 
                             color: 'black',
-                          }
                         }
+                    }
                 },
             });
         })
 
     </script>
 
- <script>
+    <script>
         $(document).ready(function () {
             var ctx = document.getElementById('uidChart').getContext('2d');
             var myschoolChart = new Chart(ctx, {
@@ -93,22 +93,22 @@
                         backgroundColor: 'rgb(153,126,184)',
                         borderWidth: 1
                     },
-                    {
-                        label: '# Cost',
-                        data: [{% for _, i, cost in measure_init %} {{ cost }}, {% endfor %}],
-                        {#data: [12, 19, 3, 5, 2, 3],#}
-                        backgroundColor: 'rgb(102,168,105)',
-                        borderWidth: 1
-                    },
+                        {
+                            label: '# Cost',
+                            data: [{% for _, i, cost in measure_init %} {{ cost }}, {% endfor %}],
+                            {#data: [12, 19, 3, 5, 2, 3],#}
+                            backgroundColor: 'rgb(102,168,105)',
+                            borderWidth: 1
+                        },
                     ]
                 },
                 options: {
                     title: {
-                                display: true,
-                                text: 'Cost and Amount for measure init',
-                                fontSize: '20'
-                            },
-                     legend:{
+                        display: true,
+                        text: 'Cost and Amount for measure init',
+                        fontSize: '20'
+                    },
+                    legend: {
                         display: true
                     },
 
@@ -123,32 +123,34 @@
                     },
 
                     plugins: {
-                          datalabels: {
+                        datalabels: {
                             align: 'center',
 
                             color: 'black',
-                          }
                         }
+                    }
                 },
             });
         })
 
     </script>
-<style>
-   button :hover {
-    background-color: #978f87;
+    <style>
+        button :hover {
+            background-color: #978f87;
 
-   }
-  </style>
+        }
+    </style>
 
 </head>
 <body>
 <div style="text-align: center; justify-content: center; margin-top: 50px;">
-    <h1 >Graphs</h1>
-        <a href="{% url 'api:index_view' %}"><button style="cursor: pointer; padding: 15px 22px; border: 2px solid #e7e7e7;
+    <h1>Graphs</h1>
+    <a href="{% url 'api:index_view' %}">
+        <button style="cursor: pointer; padding: 15px 22px; border: 2px solid #e7e7e7;
 background-color: #e7e7e7; border-radius: 10px; transition-duration: 0.4s;">
             Get back
-        </button></a>
+        </button>
+    </a>
 
 </div>
 
@@ -158,100 +160,112 @@ background-color: #e7e7e7; border-radius: 10px; transition-duration: 0.4s;">
         <canvas id="typeChart" width="800" height="400"></canvas>
     </div>
     <div style="width: 40%; height: 40%">
-        <table  style="margin-top: 200px; margin-left: 30px; border-collapse: collapse;width: 90%;   top: 10%; left: 10%">
-                    <thead>
+        <h3 style="margin-top: 200px; margin-left: 30px;">Data groped by material type id and counted amount and cost</h3>
+        <table style=" margin-left: 30px; border-collapse: collapse;width: 90%;   top: 10%; left: 10%">
+            <thead>
 
-                    <tr style="padding: 1px">
-                        <th style="padding: 1px; border: 1px solid #bfbfbf;">
-                            <div class="text">material_type</div>
-                            <div class="clear"></div>
-                        </th>
-                            <th style="padding: 1px;  border: 1px solid #bfbfbf;">
-                            <div class="text">material_name</div>
-                            <div class="clear"></div>
-                        </th>
-                        <th style="padding: 1px;  border: 1px solid #bfbfbf;">
-                            <div class="text">cost</div>
-                            <div class="clear"></div>
-                        </th>
-                        <th style="padding: 1px;  border: 1px solid #bfbfbf;">
-                            <div class="text">amount</div>
-                            <div class="clear"></div>
-                        </th>
+            <tr style="padding: 1px">
+                <th style="padding: 1px; border: 1px solid #bfbfbf;">
+                    <div class="text">material_type</div>
+                    <div class="clear"></div>
+                </th>
+                <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                    <div class="text">material_name</div>
+                    <div class="clear"></div>
+                </th>
+                <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                    <div class="text">cost</div>
+                    <div class="clear"></div>
+                </th>
+                <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                    <div class="text">amount</div>
+                    <div class="clear"></div>
+                </th>
 
-                    </tr>
-                    </thead>
-                        <tbody>
+            </tr>
+            </thead>
+            <tbody>
 
-                            {% for row in material_type_data %}
-                                <tr style="padding: 1px; vertical-align: center;">
-                                    <th class="field-get_full_name" style="padding: 1px; vertical-align: center; white-space: nowrap; font-size: 12px; border: 1px solid #bfbfbf;">
-                                        {{ row.material_type }}
-                                    </th>
-                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
-                                        {{ row.material_name }}
-                                    </td>
-                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
-                                        {{ row.cost }}
-                                    </td>
-                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
-                                        {{ row.amount}}
-                                    </td>
+            {% for row in material_type_data %}
+                <tr style="padding: 1px; vertical-align: center;">
+                    <th class="field-get_full_name"
+                        style="padding: 1px; vertical-align: center; white-space: nowrap; font-size: 12px; border: 1px solid #bfbfbf;">
+                        {{ row.material_type }}
+                    </th>
+                    <td class=""
+                        style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                        {{ row.material_name }}
+                    </td>
+                    <td class=""
+                        style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                        {{ row.cost }}
+                    </td>
+                    <td class=""
+                        style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                        {{ row.amount }}
+                    </td>
 
-                                </tr>
-                        {% endfor %}
-                        </tbody>
-                </table>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
-</div><div style="display: flex; margin-top: 50px ">
+</div>
+<div style="display: flex; margin-top: 50px ">
     <div style="width: 60%; height: 40%">
         <canvas id="uidChart" width="800" height="400"></canvas>
     </div>
     <div style="width: 40%; height: 40%">
-        <table  style="margin-top: 200px; margin-left: 30px; border-collapse: collapse;width: 90%;   top: 10%; left: 10%">
-                    <thead>
+            <h3 style="margin-top: 200px; margin-left: 30px;">Data groped by unit of measure and counted amount and cost</h3>
 
-                    <tr style="padding: 1px">
-                        <th style="padding: 1px; border: 1px solid #bfbfbf;">
-                            <div class="text">measure_type</div>
-                            <div class="clear"></div>
-                        </th>
-                            <th style="padding: 1px;  border: 1px solid #bfbfbf;">
-                            <div class="text">short_name</div>
-                            <div class="clear"></div>
-                        </th>
-                        <th style="padding: 1px;  border: 1px solid #bfbfbf;">
-                            <div class="text">cost</div>
-                            <div class="clear"></div>
-                        </th>
-                        <th style="padding: 1px;  border: 1px solid #bfbfbf;">
-                            <div class="text">amount</div>
-                            <div class="clear"></div>
-                        </th>
+        <table style="margin-left: 30px; border-collapse: collapse;width: 90%;   top: 10%; left: 10%">
+            <thead>
 
-                    </tr>
-                    </thead>
-                        <tbody>
+            <tr style="padding: 1px">
+                <th style="padding: 1px; border: 1px solid #bfbfbf;">
+                    <div class="text">measure_type</div>
+                    <div class="clear"></div>
+                </th>
+                <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                    <div class="text">short_name</div>
+                    <div class="clear"></div>
+                </th>
+                <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                    <div class="text">cost</div>
+                    <div class="clear"></div>
+                </th>
+                <th style="padding: 1px;  border: 1px solid #bfbfbf;">
+                    <div class="text">amount</div>
+                    <div class="clear"></div>
+                </th>
 
-                            {% for row in measure_data %}
-                                <tr style="padding: 1px; vertical-align: center;">
-                                    <th class="field-get_full_name" style="padding: 1px; vertical-align: center; white-space: nowrap; font-size: 12px; border: 1px solid #bfbfbf;">
-                                        {{ row.measure_type }}
-                                    </th>
-                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
-                                        {{ row.short_name }}
-                                    </td>
-                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
-                                        {{ row.cost }}
-                                    </td>
-                                    <td class="" style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
-                                        {{ row.amount}}
-                                    </td>
+            </tr>
+            </thead>
+            <tbody>
 
-                                </tr>
-                        {% endfor %}
-                        </tbody>
-                </table>
+            {% for row in measure_data %}
+                <tr style="padding: 1px; vertical-align: center;">
+                    <th class="field-get_full_name"
+                        style="padding: 1px; vertical-align: center; white-space: nowrap; font-size: 12px; border: 1px solid #bfbfbf;">
+                        {{ row.measure_type }}
+                    </th>
+                    <td class=""
+                        style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                        {{ row.short_name }}
+                    </td>
+                    <td class=""
+                        style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                        {{ row.cost }}
+                    </td>
+                    <td class=""
+                        style="text-align: center;font-size: 12px; padding: 1px; vertical-align: center;  color: #020202; border: 1px solid #bfbfbf;">
+                        {{ row.amount }}
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 </body>
