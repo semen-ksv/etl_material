@@ -93,31 +93,47 @@ def get_unit_measure(material_type_df, unit_of_measure_df, material_id: pd.Serie
     return unit_measure_row.values[0]
 
 
-def denormilize_data() -> None:
+def denormilize_data() -> bool:
     """load data from Google cloud storage,
         denormilize table Material and add column 'short_name' and 'kind',
         preparing statistic and counting data for building graphs"""
 
     # Load data from Cloud Storage
-    material_df = pd.read_csv(StringIO(download_google_bucket_blob('Material.csv')), sep=',')
+    material_df = pd.read_csv(StringIO(download_google_bucket_blob('Material.csv')), sep=',', chunksize=1000)
     material_type_df = pd.read_csv(StringIO(download_google_bucket_blob('MaterialType.csv')), sep=',')
     unit_of_measure_df = pd.read_csv(StringIO(download_google_bucket_blob('UnitOfMeasure.csv')), sep=',')
 
-    # add new fields to Material table
-    material_df["short_name"] = material_df.apply(
-        lambda row: get_unit_measure(material_type_df, unit_of_measure_df, row.material_type, 'short_name'), axis=1)
-    material_df["kind"] = material_df.apply(
-        lambda row: get_material_type(material_type_df, row.material_type, 'kind'), axis=1)
-    save_material_df(material_df)
+    chunk_list = []  # save dataframe of Materials after demoralization
+    if material_df:
+        for material_chunk in material_df:
+            # add new fields to Material table
+            material_chunk["short_name"] = material_chunk.apply(
+                lambda row: get_unit_measure(material_type_df, unit_of_measure_df, row.material_type, 'short_name'), axis=1)
+            material_chunk["kind"] = material_chunk.apply(
+                lambda row: get_material_type(material_type_df, row.material_type, 'kind'), axis=1)
 
-    # aggregate data and make statistic for graphs
+            # save chunk to database
+            save_material_df(material_chunk)
 
-    statistic_material_type_df = material_df.groupby(['material_type'])[['amount', 'cost']].agg('sum').reset_index()
-    statistic_material_type_df["material_name"] = statistic_material_type_df.apply(
-        lambda row: get_material_type(material_type_df, row.material_type, 'name'), axis=1)
-    save_material_type_statistic(statistic_material_type_df)
+            # append the chunk to list with columns that will be used for counting
+            chunk_list.append(material_chunk[['material_type', 'amount', 'cost', 'short_name']])
 
-    statistic_unit_of_measure_df = material_df.groupby(['short_name'])[['amount', 'cost']].agg('sum').reset_index()
-    statistic_unit_of_measure_df["measure_type"] = statistic_unit_of_measure_df.apply(
-        lambda row: get_unit_type(unit_of_measure_df, row.short_name, 'name'), axis=1)
-    save_material_unit_statistic(statistic_unit_of_measure_df)
+        material_df_concat = pd.concat(chunk_list)
+
+        # aggregate data and make statistic for graphs
+
+        statistic_material_type_df = material_df_concat.groupby(
+            ['material_type'])[['amount', 'cost']].agg('sum').reset_index()
+        statistic_material_type_df["material_name"] = statistic_material_type_df.apply(
+            lambda row: get_material_type(material_type_df, row.material_type, 'name'), axis=1)
+        save_material_type_statistic(statistic_material_type_df)
+
+        statistic_unit_of_measure_df = material_df_concat.groupby(
+            ['short_name'])[['amount', 'cost']].agg('sum').reset_index()
+        statistic_unit_of_measure_df["measure_type"] = statistic_unit_of_measure_df.apply(
+            lambda row: get_unit_type(unit_of_measure_df, row.short_name, 'name'), axis=1)
+        save_material_unit_statistic(statistic_unit_of_measure_df)
+
+        return True
+    else:
+        return False
