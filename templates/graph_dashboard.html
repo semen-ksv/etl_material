@@ -26,13 +26,13 @@
                     labels: [{% for type, _, i in material_type %} '{{ type }}'.replace('&amp;', '&'),  {% endfor %}],
                     datasets: [{
                         label: '# Amount',
-                        data: [{% for _, amount, i in measure_init %} {{ amount }}, {% endfor %}],
+                        data: [{% for _, amount, i in material_type %} '{{ amount }}', {% endfor %}],
                         backgroundColor: 'rgb(234,169,105)',
                         borderWidth: 1
                     },
                         {
                             label: '# Cost',
-                            data: [{% for _, i, cost in measure_init %} {{ cost }}, {% endfor %}],
+                            data: [{% for _, i, cost in material_type %} '{{ cost }}', {% endfor %}],
                             backgroundColor: 'rgb(137,142,217)',
                             borderWidth: 1
                         },
@@ -74,16 +74,16 @@
             new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: [{% for type, _, i in measure_init %} '{{ type }}'.replace('&amp;', '&'),  {% endfor %}],
+                    labels: [{% for type, _, i in measure_init %} '{{ type }}',  {% endfor %}],
                     datasets: [{
                         label: '# Amount',
-                        data: [{% for _, amount, i in measure_init %} {{ amount }}, {% endfor %}],
+                        data: [{% for _, amount, i in measure_init %} '{{ amount }}', {% endfor %}],
                         backgroundColor: 'rgb(153,126,184)',
                         borderWidth: 1
                     },
                         {
                             label: '# Cost',
-                            data: [{% for _, i, cost in measure_init %} {{ cost }}, {% endfor %}],
+                            data: [{% for _, i, cost in measure_init %} '{{ cost }}', {% endfor %}],
                             backgroundColor: 'rgb(102,168,105)',
                             borderWidth: 1
                         },
