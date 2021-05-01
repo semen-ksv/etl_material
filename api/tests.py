@@ -6,7 +6,7 @@ from django.test import TestCase
 import unittest
 import pandas as pd
 import datatest as dt
-from api.services import denormilize_data, get_material_type, get_unit_type, get_unit_measure
+from api.services import denormalize_data, get_material_type, get_unit_type, get_unit_measure
 from django import setup as django_setup
 import logging
 

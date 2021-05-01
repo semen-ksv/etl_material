@@ -2,7 +2,7 @@
 from django.shortcuts import render, get_object_or_404
 
 from api.models import StatisticMaterialMeasureUnit, StatisticMaterialType, MaterialData
-from api.services import denormilize_data
+from api.services import denormalize_data
 
 
 def index(request):
@@ -11,9 +11,9 @@ def index(request):
     return render(request, 'index.html')
 
 
-def denorvilization(request):
+def denormalization(request):
     """run loading data from Storage and denormilize data"""
-    denormalized_data = denormilize_data()
+    denormalized_data = denormalize_data()
     if denormalized_data:
         table_data = MaterialData.objects.all()
         return render(request, 'denormilize_table.html', {'page_obj': table_data})
