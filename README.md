@@ -12,6 +12,8 @@
 
 ##### To check server work please go to link http://34.71.37.150/
 
+### Visualization 
+![](img/visualization.jpg)
 
 ### Running project
 
