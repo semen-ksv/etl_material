@@ -1,54 +1,37 @@
-import os
-import sys
-from pathlib import Path
-
-from django.test import TestCase
-import unittest
+import numpy as np
 import pandas as pd
 import datatest as dt
-from api.services import denormalize_data, get_material_type, get_unit_type, get_unit_measure
-from django import setup as django_setup
-import logging
 
-dir = Path(__file__).resolve().parent.parent
+from django.test import TestCase
 
-# This is so Django knows where to find stuff.
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "test_metabase.settings")
-# sys.path.append(dir)
-
-# This is so my local_settings.py gets loaded.
-os.chdir(dir)
-django_setup()
-
-class TestMovies(dt.DataTestCase):
-    @dt.mandatory
-    def test_material_columns(self):
-
-        material_df_test = pd.read_csv('/api/files/Material_test.csv')
-        self.assertValid(
-            material_df_test.columns,
-            {'id', 'created', 'modified', 'material_type', 'amount', 'cost'},
-        )
+from api.services import get_material_type, get_unit_measure
 
 
 class TestDenormilization(TestCase):
     def setUp(self):
 
         with dt.working_directory(__file__):
-            self.material_df = pd.read_csv('/api/files/Material_test.csv')
+            self.material_df = pd.read_csv('./files/Material_test.csv', sep=';')
         with dt.working_directory(__file__):
-            self.material_type_df = pd.read_csv('/api/files/MaterialType_test.csv')
+            self.material_type_df = pd.read_csv('./files/MaterialType_test.csv', sep=';')
         with dt.working_directory(__file__):
-            self.unit_of_measure_df = pd.read_csv('/api/files/UnitOfMeasure_test.csv')
+            self.unit_of_measure_df = pd.read_csv('./files/UnitOfMeasure_test.csv', sep=';')
 
     def test_get_material_type(self):
+        row = self.material_type_df.iloc[1]
         self.assertEqual(get_material_type(
-            self.material_type_df, self.material_type_df.loc[1], 'kind'), 'PACKAGING')
+            self.material_type_df, row.id, 'kind'), 'RAW_MATERIAL')
+
+    def test_get_material_type_nan(self):
+        cars = {'id': [22], 'name': ['first']}
+        test_df = pd.DataFrame(cars, columns=['id', 'name'])
+        self.assertEqual(type(get_material_type(
+            self.material_type_df, test_df.iloc[0].id, 'kind')), type(np.nan))
 
     def test_get_short_unit_name(self):
         self.assertEqual(get_unit_measure(
-            self.material_type_df, self.unit_of_measure_df, self.material_type_df.loc[1], 'short_name'), 'ea')
+            self.material_type_df, self.unit_of_measure_df, self.material_type_df.loc[1].id, 'short_name'), 'lb')
 
     def test_get_type_name(self):
-        self.assertEqual(get_material_type(self.material_type_df, self.material_type_df.loc[1], 'name'), '500ml Bottle')
+        self.assertEqual(get_material_type(self.material_type_df, self.material_type_df.loc[1].id, 'name'), 'Dry Biomass')
 
