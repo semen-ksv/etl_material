@@ -12,14 +12,6 @@
 
 ##### To check server work please go to link http://34.71.37.150/
 
-#### Keys point:
-
-
-12\. visualization created with Metabase
-![](img/swage_img.jpg)
-
-
-
 
 ### Running project
 
