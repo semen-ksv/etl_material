@@ -12,9 +12,6 @@ app = Celery(__name__)
 app.config_from_object('test_metabase:settings')
 app.autodiscover_tasks()
 
-TASK_SERIALIZER = 'json'
-ACCEPT_CONTENT = ['json']
-
 app.conf.update(
     BROKER_URL=settings.CELERY_BROKER_URL,
 )
