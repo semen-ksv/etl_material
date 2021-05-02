@@ -2,6 +2,7 @@ from io import StringIO
 
 import numpy as np
 import pandas as pd
+from celery import shared_task
 
 from api.google_bucket import download_google_bucket_blob
 from api.models import MaterialData, StatisticMaterialType, StatisticMaterialMeasureUnit
@@ -98,6 +99,7 @@ def get_unit_measure(material_type_df, unit_of_measure_df, material_id: pd.Serie
         return material_unit_value
 
 
+@shared_task()
 def denormalize_data() -> bool:
     """load data from Google cloud storage,
         denormalize table Material and add column 'short_name' and 'kind',
