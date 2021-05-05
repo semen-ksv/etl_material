@@ -7,7 +7,7 @@ from django.test import TestCase
 from api.services import get_material_type, get_unit_measure
 
 
-class TestDenormilization(TestCase):
+class TestDenormalization(TestCase):
     def setUp(self):
 
         with dt.working_directory(__file__):

@@ -163,3 +163,4 @@ pip-selfcheck.json
 
 /api/files/
 !/google_key.json
+/google_key.json

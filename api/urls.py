@@ -7,6 +7,6 @@ app_name = 'api'
 
 urlpatterns = [
     path('', index, name='index_view'),
-    path('denormilize/', denormalization, name='denormilize'),
+    path('denormalize/', denormalization, name='denormalize'),
     path('build_graphs/', build_graphs, name='build_graphs'),
 ]

@@ -12,13 +12,13 @@ def index(request):
 
 
 def denormalization(request):
-    """run loading data from Storage and denormilize data"""
+    """run loading data from Storage and denormalize data"""
     denormalized_data = denormalize_data()
     if denormalized_data:
         table_data = MaterialData.objects.all()
-        return render(request, 'denormilize_table.html', {'page_obj': table_data})
+        return render(request, 'denormalize_table.html', {'page_obj': table_data})
     else:
-        return render(request, 'denormilize_table.html', {'msg': "Material data was empty or not loaded!"})
+        return render(request, 'denormalize_table.html', {'msg': "Material data was empty or not loaded!"})
 
 
 def build_graphs(request):
